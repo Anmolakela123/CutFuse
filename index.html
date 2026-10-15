@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>CutFuse — Fast Video Joiner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="CutFuse home">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h8M4 17h8M14 4l6 8-6 8M12 12h8"/></svg></span>
+        <span>cut<span class="brand-accent">fuse</span></span>
+      </a>
+      <div class="top-meta"><span class="live-dot"></span> BROWSER-BASED PROCESSING <span class="meta-divider">·</span> FILES STAY ON YOUR DEVICE</div>
+      <a class="github-link" href="https://pages.github.com/" target="_blank" rel="noreferrer">GitHub Pages ↗</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span>✦</span> VIDEO WORKFLOW, SIMPLIFIED</div>
+        <h1>Trim. Join. <span>Done.</span></h1>
+        <p class="hero-copy">Two videos in. One finished video out. Trim each clip, join them in order, and download your result — right in your browser.</p>
+        <div class="hero-pills"><span>◇ No account</span><span>◇ No upload server</span><span>◇ Free interface</span></div>
+      </section>
+
+      <section class="workspace">
+        <div class="section-heading">
+          <div><span class="step-label">01 / YOUR CLIPS</span><h2>Build your sequence</h2></div>
+          <span class="subtle">Video 1 plays first, then Video 2</span>
+        </div>
+
+        <div class="clip-grid">
+          <article class="clip-card" id="card1">
+            <div class="clip-head">
+              <div class="clip-icon">01</div>
+              <div class="clip-title"><h3>Video One</h3><p>First part of your final video</p></div>
+              <span class="file-status" id="status1">EMPTY</span>
+            </div>
+            <label class="dropzone" id="drop1" for="file1">
+              <input type="file" id="file1" accept="video/*">
+              <span class="upload-icon"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 16v4h16v-4"/></svg></span>
+              <strong>Choose first video</strong>
+              <span>or drag and drop it here</span>
+              <small>MP4, MOV, WebM and other browser-supported files</small>
+            </label>
+            <video class="preview" id="preview1" controls playsinline hidden></video>
+            <div class="file-info" id="info1" hidden></div>
+            <div class="trim-panel">
+              <div class="trim-heading"><span>Trim range</span><span class="trim-note">Keep the part between start and end</span></div>
+              <div class="trim-inputs">
+                <label>Start <input id="start1" type="text" value="00:00:00" inputmode="numeric" aria-label="Video 1 trim start"></label>
+                <label>End <input id="end1" type="text" value="00:00:00" inputmode="numeric" aria-label="Video 1 trim end"></label>
+              </div>
+              <div class="range-row"><span>IN</span><input id="rangeStart1" type="range" min="0" max="100" value="0" disabled><span id="startLabel1">00:00</span></div>
+              <div class="range-row"><span>OUT</span><input id="rangeEnd1" type="range" min="0" max="100" value="100" disabled><span id="endLabel1">00:00</span></div>
+              <div class="trim-foot"><span id="duration1">Duration: —</span><button class="text-button" type="button" id="reset1">Reset trim</button></div>
+            </div>
+          </article>
+
+          <article class="clip-card" id="card2">
+            <div class="clip-head">
+              <div class="clip-icon">02</div>
+              <div class="clip-title"><h3>Video Two</h3><p>Second part of your final video</p></div>
+              <span class="file-status" id="status2">EMPTY</span>
+            </div>
+            <label class="dropzone" id="drop2" for="file2">
+              <input type="file" id="file2" accept="video/*">
+              <span class="upload-icon"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7 9m5-5 5 5M4 16v4h16v-4"/></svg></span>
+              <strong>Choose second video</strong>
+              <span>or drag and drop it here</span>
+              <small>MP4, MOV, WebM and other browser-supported files</small>
+            </label>
+            <video class="preview" id="preview2" controls playsinline hidden></video>
+            <div class="file-info" id="info2" hidden></div>
+            <div class="trim-panel">
+              <div class="trim-heading"><span>Trim range</span><span class="trim-note">Keep the part between start and end</span></div>
+              <div class="trim-inputs">
+                <label>Start <input id="start2" type="text" value="00:00:00" inputmode="numeric" aria-label="Video 2 trim start"></label>
+                <label>End <input id="end2" type="text" value="00:00:00" inputmode="numeric" aria-label="Video 2 trim end"></label>
+              </div>
+              <div class="range-row"><span>IN</span><input id="rangeStart2" type="range" min="0" max="100" value="0" disabled><span id="startLabel2">00:00</span></div>
+              <div class="range-row"><span>OUT</span><input id="rangeEnd2" type="range" min="0" max="100" value="100" disabled><span id="endLabel2">00:00</span></div>
+              <div class="trim-foot"><span id="duration2">Duration: —</span><button class="text-button" type="button" id="reset2">Reset trim</button></div>
+            </div>
+          </article>
+        </div>
+
+        <section class="join-panel">
+          <div class="join-top">
+            <div><span class="step-label">02 / OUTPUT SETTINGS</span><h2>Ready to combine?</h2></div>
+            <div class="estimate"><span class="estimate-label">ESTIMATED FINAL LENGTH</span><strong id="totalDuration">—</strong></div>
+          </div>
+          <div class="settings-row">
+            <label class="select-wrap"><span>Processing mode</span>
+              <select id="mode">
+                <option value="fast">Fast join (keep source quality)</option>
+                <option value="720">Convert to 720p (slower)</option>
+                <option value="480">Convert to 480p (slower)</option>
+              </select>
+            </label>
+            <label class="select-wrap"><span>Download format</span>
+              <select id="format"><option value="mp4">MP4</option></select>
+            </label>
+          </div>
+          <div class="compat-note"><span class="note-icon">i</span><p><strong>Fast mode is the quickest option.</strong> It tries to keep the original streams without re-encoding. For accurate cuts or incompatible clips, use 720p/480p mode. Large videos can exceed browser memory or take longer than expected.</p></div>
+          <button class="join-button" id="joinBtn" type="button" disabled><span class="join-symbol">↗</span><span id="joinBtnText">Add videos and trim to continue</span><span class="button-arrow">→</span></button>
+          <div class="progress-wrap" id="progressWrap" hidden>
+            <div class="progress-top"><span id="progressLabel">Preparing video engine…</span><span id="progressPercent">0%</span></div>
+            <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+            <p id="progressDetail">The first run downloads the video engine into your browser.</p>
+          </div>
+          <div class="result-box" id="resultBox" hidden>
+            <div class="result-icon">✓</div><div class="result-copy"><strong>Your joined video is ready</strong><span id="resultInfo">Download the finished MP4.</span></div>
+            <a class="download-button" id="downloadBtn" href="#" download="cutfuse-joined.mp4">↓ Download MP4</a>
+          </div>
+          <p class="privacy-line"><span class="lock">▣</span> Files are processed locally in your browser. They are not uploaded to a CutFuse server.</p>
+        </section>
+      </section>
+
+      <section class="how-it-works">
+        <div><span class="step-label">BUILT FOR SIMPLE EDITS</span><h2>One workspace. Your sequence.</h2></div>
+        <div class="how-grid">
+          <div><span class="how-num">01</span><h3>Choose two clips</h3><p>Use two separate video files in the order you want them to play.</p></div>
+          <div><span class="how-num">02</span><h3>Set your trim points</h3><p>Keep only the portion you need from each video, using the time fields or sliders.</p></div>
+          <div><span class="how-num">03</span><h3>Join and download</h3><p>Start processing and save the final MP4 when it is ready.</p></div>
+        </div>
+      </section>
+    </main>
+    <footer><a class="brand footer-brand" href="#"><span class="brand-mark small">CF</span><span>cut<span class="brand-accent">fuse</span></span></a><span>Made for quick, simple video edits.</span><span>Free static website · GitHub Pages</span></footer>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
